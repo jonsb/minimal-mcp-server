@@ -84,6 +84,29 @@ while (Console.ReadLine() is { } line)
                             },
                             ["required"] = new JsonArray { "message" }
                         }
+                    },
+                    new JsonObject
+                    {
+                        ["name"]        = "add",
+                        ["description"] = "Returns the sum of the numbers you send it.",
+                        ["inputSchema"] = new JsonObject
+                        {
+                            ["type"] = "object",
+                            ["properties"] = new JsonObject
+                            {
+                                ["number1"] = new JsonObject
+                                {
+                                    ["type"]        = "number",
+                                    ["description"] = "The first number"
+                                },
+                                ["number2"] = new JsonObject
+                                {
+                                    ["type"]        = "number",
+                                    ["description"] = "The second number"
+                                }
+                            },
+                            ["required"] = new JsonArray { "number1", "number2" }
+                        }
                     }
                 }
             });
@@ -111,6 +134,28 @@ while (Console.ReadLine() is { } line)
                         {
                             ["type"] = "text",
                             ["text"] = message
+                        }
+                    }
+                    });
+                }
+                else if (toolName == "add")
+                {
+                    double number1 = arguments["number1"].GetValue<double>();
+                    double number2 = arguments["number2"].GetValue<double>();
+
+                    double sum = number1 + number2;
+
+                    // Tool results are wrapped in a "content" array.
+                    // Each item in the array is a content block with a type.
+                    // "text" is the most common type.
+                    Reply(id!, new JsonObject
+                    {
+                        ["content"] = new JsonArray
+                    {
+                        new JsonObject
+                        {
+                            ["type"] = "text",
+                            ["text"] = sum.ToString()
                         }
                     }
                     });

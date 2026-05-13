@@ -65,6 +65,7 @@ Paste these lines one at a time (each is one JSON message):
 {"jsonrpc":"2.0","method":"notifications/initialized","params":{}}
 {"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}
 {"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"echo","arguments":{"message":"Hello, MCP!"}}}
+{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"add","arguments":{"number1":1.0, "number2":2.1}}}
 ```
 
 ---
